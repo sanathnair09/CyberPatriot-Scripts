@@ -37,35 +37,60 @@ badExtensions = ['.shadow', ' .djvu', ' .djvur', ' .djvuu',
 # TODO: installing clamav
 # TODO: lots of stuff
 
+
+class colors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    END = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
 def main():
-    choice = input("1. Check for users \n2. Scan for bad files \n3. Install ClamAV \n")
+    start = input("{}WARNING: If your forensic question requires information from user accounts or the location of a malicious file, enter 0 to prevent this script from deleting information. Otherwise enter 1 to allow the program to delete files and user information.{} ".format(colors.WARNING, colors.END))
+    delete = False
+    if(start == 1):
+        delete = True
+    choice = input("1. Check for users \n2. Scan for bad files \n3. Install Security Software \n")
     choice = int(choice)
     if (choice == 1):
         print("Checking for users")
-        users()
+        #users(delete)
     elif (choice == 2):
-        print("Checking for bad files")
-        scanMalicious()
+        scanMalicious(delete)
     else:
         print("Installing ClamAV")
-        clamAV()
+        #securitySoftware(delete)
 
-# Scans the whole computer and checks each file's extensions and compares it to the list of badExtensions
-def scanMalicious():
-    input("Scanning the whole computer")
+
+def scanMalicious(delete):
+    print(f"{colors.HEADER}Scanning the whole computer{colors.END}")
+    locs = []
     for root, dirs, files in os.walk("/"):
         for file in files:
             filename, extension = os.path.splitext(file)
             for bad in badExtensions:
-                if(extension == bad):
-                    print("Filename: " + filename + " Extention: " + extension)
-# Takes a list of users that are approved and their account type and checks it against the list of users on the computer
-def users():
-    pass
+                if(extension == '.jpg'):
+                    #print("Filename: " + filename + " Extention: " + extension)
+                    locs.append(file)
+    fileStorage = "malicious_files_list.txt"
+    desktopFile = open(fileStorage, "w")
+    desktopFile.write("\n".join(locs))
+    desktopFile.close
+    print(f"File '{fileStorage}' created")
 
-#Installs a simple antivirus
-def clamAV():
-    pass
+
+#def users(delete):
+    #if(delete):
+    # TODO:
+
+#def securitySoftware(delete):
+    #f(delete):
+    # TODO:
 
 
 main()
+#scanMalicious()
