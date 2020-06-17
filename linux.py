@@ -1,6 +1,7 @@
 # resources: https://docs.python.org/3/library/os.html
 import os
 
+# List of bad file extensions that I got from https://sensorstechforum.com/popular-windows-file-types-used-malware-2018/
 badExtensions = ['.shadow', ' .djvu', ' .djvur', ' .djvuu',
                  ' .udjvu', ' .uudjvu', ' .djvuq', ' .djvus', ' .djvur',
                  ' .djvut', ' .pdff', ' .tro', ' .tfude', ' .tfudet', ' .tfudeq',
@@ -49,7 +50,7 @@ def main():
         print("Installing ClamAV")
         clamAV()
 
-
+# Scans the whole computer and checks each file's extensions and compares it to the list of badExtensions
 def scanMalicious():
     input("Scanning the whole computer")
     for root, dirs, files in os.walk("/"):
@@ -58,10 +59,11 @@ def scanMalicious():
             for bad in badExtensions:
                 if(extension == bad):
                     print("Filename: " + filename + " Extention: " + extension)
-
+# Takes a list of users that are approved and their account type and checks it against the list of users on the computer
 def users():
     pass
 
+#Installs a simple antivirus
 def clamAV():
     pass
 
