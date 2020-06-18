@@ -80,7 +80,7 @@ def scanMalicious(delete):
     desktopFile = open(fileStorage, "w")
     desktopFile.write("\n".join(locs))
     desktopFile.close
-    print(f"File '{fileStorage}' created")
+    print(f"{colors.UNDERLINE}File '{fileStorage}' created{colors.END}")
 
 
 #def users(delete):
