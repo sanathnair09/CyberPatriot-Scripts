@@ -54,11 +54,11 @@ def main():
     delete = False
     if(start == 1):
         delete = True
-    choice = input("1. Check for users \n2. Scan for bad files \n3. Install Security Software \n")
+    choice = input("1. Check for users 2. Scan for bad files 3. Install Security Software ")
     choice = int(choice)
     if (choice == 1):
         print("Checking for users")
-        #users(delete)
+        users(delete)
     elif (choice == 2):
         scanMalicious(delete)
     else:
@@ -83,9 +83,12 @@ def scanMalicious(delete):
     print(f"{colors.UNDERLINE}File '{fileStorage}' created{colors.END}")
 
 
-#def users(delete):
+def users(delete):
     #if(delete):
-    # TODO:
+    userList = input(f"{colors.HEADER}Enter the name of the users that should be on the device seperated by commas. Any user not mentiond in this list will be deleted:{colors.END} ")
+    userList = userList.split(",")
+    print(type(userList))
+    print(userList)
 
 #def securitySoftware(delete):
     #f(delete):
