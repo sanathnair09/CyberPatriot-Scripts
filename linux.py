@@ -31,7 +31,7 @@ badExtensions = ['.shadow', ' .djvu', ' .djvur', ' .djvuu',
                  ' .vesrato', ' .masodas', ' .cetori', ' .stare', ' .carote',
                  ' .gero', ' .hese', ' .seto', ' .peta', ' .moka', ' .kvag', ' .karl',
                  ' .nesa', ' .noos', ' .kuub', ' .reco', ' .bora', '.pcapng', '.mp4',
-                 '.mp3', '.m4v', '.mov', '.avi', '.asf']
+                 '.mp3', '.m4v', '.mov', '.avi', '.asf', '.jpg', '.exe', '.bat']
 
 # TODO: badFiles
 # TODO: installing clamav
@@ -73,7 +73,7 @@ def scanMalicious(delete):
         for file in files:
             filename, extension = os.path.splitext(file)
             for bad in badExtensions:
-                if(extension == '.jpg'):
+                if(extension == bad):
                     #print("Filename: " + filename + " Extention: " + extension)
                     locs.append(file)
     fileStorage = "malicious_files_list.txt"
